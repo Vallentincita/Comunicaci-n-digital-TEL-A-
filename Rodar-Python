@@ -1,0 +1,40 @@
+# --- Importar librerías ---
+import pandas as pd
+import matplotlib.pyplot as plt
+from google.colab import files
+
+# --- Subir archivo ---
+print("Sube tu archivo Velocity.csv")
+uploaded = files.upload()
+
+# --- Leer archivo ---
+data = pd.read_csv('Velocity.csv', sep='\t')
+
+# Limpiar nombres de columnas (eliminar comillas y espacios)
+data.columns = data.columns.str.strip().str.replace('"', '')
+
+# Verificar los nombres reales
+print("Columnas detectadas:", data.columns.tolist())
+
+# --- Extraer columnas con nombres exactos ---
+t = data['Time (s)']
+v = data['Velocity (m/s)']
+g = data['Gyroscope y (rad/s)']
+
+# --- Graficar ---
+fig, (ax1, ax2) = plt.subplots(2, 1, figsize=(10, 7))
+
+ax1.plot(t, v, color='m')
+ax1.set_xlabel("t (s)")
+ax1.set_ylabel("v (m/s)")
+ax1.set_title("Velocidad", color='m')
+ax1.grid(True)
+
+ax2.plot(t, g, color='c')
+ax2.set_xlabel("t (s)")
+ax2.set_ylabel("w (rad/s)")
+ax2.set_title("Giroscopio y", color='c')
+ax2.grid(True)
+
+plt.tight_layout()
+plt.show()
