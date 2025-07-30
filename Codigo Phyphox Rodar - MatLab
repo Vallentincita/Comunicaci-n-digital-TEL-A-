@@ -1,0 +1,13 @@
+t=J.Time_s_;
+v=J.Velocity_m_s_;
+g=J.GyroscopeY_rad_s_;
+subplot(2,1,1);
+plot(t,v,Color='m')
+xlabel("t(s)")
+ylabel("v(m/s)")
+title("Velocidad",'Color','m')
+subplot(2,1,2);
+plot(t,g,Color='c')
+xlabel("t(s)")
+ylabel("w(rad/s)")
+title("Giroscopio y",'Color','c')
